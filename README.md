@@ -1,15 +1,21 @@
-benspants/blade-cache-management
+alwaysblank/blade-generate
 ================================
 
 
 
-[![Build Status](https://travis-ci.org/benspants/blade-cache-management.svg?branch=master)](https://travis-ci.org/benspants/blade-cache-management)
+[![Build Status](https://travis-ci.org/alwaysblank/blade-generate.svg?branch=master)](https://travis-ci.org/alwaysblank/blade-generate)
 
 Quick links: [Using](#using) | [Installing](#installing) | [Contributing](#contributing)
 
 ## Using
 
+This has only one command:
 
+```
+wp blade compile
+```
+
+This will iterate through all `.blade.php` files in `/templates` in your theme folder and generate compiled version of all the templates.
 
 ## Installing
 

@@ -1,8 +1,8 @@
 {
-    "name": "benspants/blade-cache-management",
+    "name": "alwaysblank/blade-generate",
     "description": "Force generation of Blade template cache.",
     "type": "wp-cli-package",
-    "homepage": "https://github.com/benspants/blade-cache-management",
+    "homepage": "https://github.com/alwaysblank/blade-generate",
     "license": "MIT",
     "authors": [],
     "minimum-stability": "dev",
