@@ -7,6 +7,17 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 	return;
 }
 
+function rsearch($folder, $pattern) {
+    $dir = new RecursiveDirectoryIterator($folder);
+    $ite = new RecursiveIteratorIterator($dir);
+    $files = new RegexIterator($ite, $pattern, RegexIterator::GET_MATCH);
+    $fileList = array();
+    foreach($files as $file) {
+        $fileList = array_merge($fileList, $file);
+    }
+    return $fileList;
+}
+
 /**
  * Generate Blade templates.
  *
@@ -14,7 +25,7 @@ if ( ! class_exists( 'WP_CLI' ) ) {
  */
 $compile_command = function() {
 	$compiler = App\sage('blade')->compiler();
-	foreach(glob(get_stylesheet_directory().'/templates/**/*.blade.php') as $file) :
+	foreach(rsearch(get_stylesheet_directory().'/templates','/^.+\.blade\.php$/i') as $file) :
 		echo 'Compiling '.basename($file).'...';
 		$compiler->compile($file);
 		echo "👍\n";
