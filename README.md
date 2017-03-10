@@ -21,7 +21,7 @@ This will iterate through all `.blade.php` files in `/templates` in your theme f
 
 Installing this package requires WP-CLI v1.1.0 or greater. Update to the latest stable release with `wp cli update`.
 
-Once you've done so, you can install this package with `wp package install benspants/blade-cache-management`.
+Once you've done so, you can install this package with `wp package install alwaysblank/blade-cache-management`.
 
 ## Contributing
 
@@ -33,9 +33,9 @@ Contributing isn’t limited to just code. We encourage you to contribute in the
 
 Think you’ve found a bug? We’d love for you to help us get it fixed.
 
-Before you create a new issue, you should [search existing issues](https://github.com/benspants/blade-cache-management/issues?q=label%3Abug%20) to see if there’s an existing resolution to it, or if it’s already been fixed in a newer version.
+Before you create a new issue, you should [search existing issues](https://github.com/alwaysblank/blade-cache-management/issues?q=label%3Abug%20) to see if there’s an existing resolution to it, or if it’s already been fixed in a newer version.
 
-Once you’ve done a bit of searching and discovered there isn’t an open or fixed issue for your bug, please [create a new issue](https://github.com/benspants/blade-cache-management/issues/new) with the following:
+Once you’ve done a bit of searching and discovered there isn’t an open or fixed issue for your bug, please [create a new issue](https://github.com/alwayblank/blade-cache-management/issues/new) with the following:
 
 1. What you were doing (e.g. "When I run `wp post list`").
 2. What you saw (e.g. "I see a fatal about a class being undefined.").
@@ -45,7 +45,7 @@ Include as much detail as you can, and clear steps to reproduce if possible.
 
 ### Creating a pull request
 
-Want to contribute a new feature? Please first [open a new issue](https://github.com/benspants/blade-cache-management/issues/new) to discuss whether the feature is a good fit for the project.
+Want to contribute a new feature? Please first [open a new issue](https://github.com/alwaysblank/blade-cache-management/issues/new) to discuss whether the feature is a good fit for the project.
 
 Once you've decided to commit the time to seeing your pull request through, please follow our guidelines for creating a pull request to make sure it's a pleasant experience:
 
