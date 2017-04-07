@@ -21,7 +21,7 @@ This will iterate through all `.blade.php` files in `/templates` in your theme f
 
 Installing this package requires WP-CLI v1.1.0 or greater. Update to the latest stable release with `wp cli update`.
 
-Once you've done so, you can install this package with `wp package install alwaysblank/blade-cache-management`.
+Currently WP-CLI is not accepting new package submissions, but you can install this package directly from github with the following command: `wp package install git@github.com:alwaysblank/blade-generate.git`.
 
 ## Contributing
 
