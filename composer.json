@@ -10,7 +10,8 @@
         "files": [ "command.php" ]
     },
     "require": {
-        "wp-cli/wp-cli": ">=1.1.0"
+        "wp-cli/wp-cli": ">=1.1.0",
+        "symfony/finder": "2.7"
     },
     "require-dev": {
         "behat/behat": "~2.5"

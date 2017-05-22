@@ -1,21 +1,11 @@
 <?php
 
 use Roots\Sage\Container;
+use Symfony\Component\Finder\Finder;
 use Illuminate\Contracts\Container\Container as ContainerContract;
 
 if ( ! class_exists( 'WP_CLI' ) ) {
 	return;
-}
-
-function rsearch($folder, $pattern) {
-    $dir = new RecursiveDirectoryIterator($folder);
-    $ite = new RecursiveIteratorIterator($dir);
-    $files = new RegexIterator($ite, $pattern, RegexIterator::GET_MATCH);
-    $fileList = array();
-    foreach($files as $file) {
-        $fileList = array_merge($fileList, $file);
-    }
-    return $fileList;
 }
 
 /**
@@ -24,10 +14,12 @@ function rsearch($folder, $pattern) {
  * @when after_wp_load
  */
 $compile_command = function() {
+	$finder = new Finder();
+	$finder->files()->name('/^.+\.blade\.php$/i')->in(get_stylesheet_directory());
 	$compiler = App\sage('blade')->compiler();
-	foreach(rsearch(get_stylesheet_directory().'/resources/views','/^.+\.blade\.php$/i') as $file) :
-		echo 'Compiling '.basename($file).'...';
-		$compiler->compile($file);
+	foreach($finder as $file) :
+		echo 'Compiling '.$file->getBasename().'...';
+		$compiler->compile($file->getRealPath());
 		echo "👍\n";
 	endforeach;
 	WP_CLI::success( "Templates rendered!" );
