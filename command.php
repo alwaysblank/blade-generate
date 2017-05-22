@@ -25,7 +25,7 @@ function rsearch($folder, $pattern) {
  */
 $compile_command = function() {
 	$compiler = App\sage('blade')->compiler();
-	foreach(rsearch(get_stylesheet_directory().'/views','/^.+\.blade\.php$/i') as $file) :
+	foreach(rsearch(get_stylesheet_directory().'/resources/views','/^.+\.blade\.php$/i') as $file) :
 		echo 'Compiling '.basename($file).'...';
 		$compiler->compile($file);
 		echo "👍\n";
