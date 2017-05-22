@@ -15,7 +15,7 @@ This has only one command:
 wp blade compile
 ```
 
-This will iterate through all `.blade.php` files in `/templates` in your theme folder and generate compiled version of all the templates.
+This will iterate through all `.blade.php` files in `/resources/views/` in your theme folder and generate compiled versions of all the templates.
 
 ## Installing
 
