@@ -75,7 +75,7 @@ class BladeCommand extends WP_CLI_Command
      *     # Only render layouts
      *     wp blade compile --directory=views/layouts
      *
-     *     # Render all tamples
+     *     # Render all templates
      *     wp blade compile
      *
      * @when after_wp_load
