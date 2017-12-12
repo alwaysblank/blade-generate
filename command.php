@@ -165,5 +165,28 @@ class BladeCommand extends WP_CLI_Command
             WP_CLI::error("Uh-oh, something went wrong!");
         }
     }
+
+    /**
+     * Clear out all files in cache directory.
+     *
+     * @when after_wp_load
+     *
+     */
+    public function wipe()
+    {
+        $finder = new Finder();
+        $filesystem = new Filesystem();
+        $all_files = array_map(function ($file) {
+            return $file->getRealPath();
+        }, iterator_to_array($finder->files()->in(App\config('view.compiled'))));
+
+        $success = $filesystem->delete($all_files);
+
+        if ($success) {
+            WP_CLI::success(sprintf("All files in `%s` removed!", App\config('view.compiled')));
+        } else {
+            WP_CLI::error("Uh-oh, something went wrong!");
+        }
+    }
 }
 WP_CLI::add_command('blade', 'BladeCommand');
