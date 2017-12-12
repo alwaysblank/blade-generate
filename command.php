@@ -146,7 +146,6 @@ class BladeCommand extends WP_CLI_Command
      */
     public function clear($args, $assoc_args)
     {
-        $sush = WP_CLI::get_config('quiet');
         $finder = new Finder();
         $blade = App\sage('blade');
         $filesystem = new Filesystem();
