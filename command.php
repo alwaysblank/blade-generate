@@ -12,6 +12,36 @@ class BladeCommand extends WP_CLI_Command
 {
 
     /**
+     * Determines which directory to parse for Blade templates.
+     *
+     * @param str $directory
+     * @return str
+     */
+    private function determineDirectory($argument = false)
+    {
+        $user_dir_full = false;
+
+        // If we were passed a directory, process it a little bit.
+        if ($argument && $argument != 'all') :
+            $user_dir = trim($argument, " /\\");
+            $user_dir_full = trailingslashit(get_stylesheet_directory()).$user_dir;
+        endif;
+
+        // Return the user directory, if set.
+        // Otherwise, return the default directory.
+        if ($user_dir_full) :
+            if (!file_exists($user_dir_full)) :
+                WP_CLI::error("Your directory `".$user_dir_full."` does not exist!");
+            endif;
+            $directory = $user_dir_full;
+        else :
+            $directory = get_stylesheet_directory();
+        endif;
+
+        return $directory;
+    }
+
+    /**
      * Compile a single file
      */
     private function compileFile($file_path)
@@ -54,19 +84,7 @@ class BladeCommand extends WP_CLI_Command
         $sush = WP_CLI::get_config('quiet');
         $finder = new Finder();
 
-        if (isset($assoc_args['directory']) && $assoc_args['directory'] != 'all') :
-            $user_dir = trim($assoc_args['directory'], " /\\");
-            $user_dir_full = trailingslashit(get_stylesheet_directory()).$user_dir;
-        endif;
-
-        if (isset($user_dir_full)) :
-            if (!file_exists($user_dir_full)) :
-                WP_CLI::error("Your directory `".$user_dir_full."` does not exist!");
-            endif;
-            $directory = $user_dir_full;
-        else :
-            $directory = get_stylesheet_directory();
-        endif;
+        $directory = $this->determineDirectory(isset($assoc_args['directory']) ? $assoc_args['directory'] : false);
 
         WP_CLI::log('Finding files...');
         $finder->files()->name('/^.+\.blade\.php$/i')->in($directory);
