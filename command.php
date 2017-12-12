@@ -98,7 +98,10 @@ class BladeCommand extends WP_CLI_Command
         $list = [];
         foreach ($finder as $file) :
             $this->compileFile($file->getRealPath());
-            $list[] = ['File' => $file->getBasename('.blade.php'), 'Status' => '👍'];
+            $list[] = [
+                'File' => str_replace([$directory.'/', '.blade.php'], '', $file->getRealPath()),
+                'Status' => '👍',
+            ];
             if (isset($progress)) :
                 $progress->tick();
             endif;
