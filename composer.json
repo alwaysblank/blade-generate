@@ -7,7 +7,9 @@
     "authors": [],
     "minimum-stability": "dev",
     "autoload": {
-        "files": [ "command.php" ]
+        "files": [
+            "command.php"
+        ]
     },
     "require": {
         "wp-cli/wp-cli": ">=1.1.0",
