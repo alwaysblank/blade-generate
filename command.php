@@ -2,7 +2,6 @@
 
 use Roots\Sage\Container;
 use Symfony\Component\Finder\Finder;
-use Illuminate\Contracts\Container\Container as ContainerContract;
 use Illuminate\Filesystem\Filesystem;
 
 if (! class_exists('WP_CLI')) {
@@ -11,6 +10,18 @@ if (! class_exists('WP_CLI')) {
 
 class BladeCommand extends WP_CLI_Command
 {
+
+	/**
+	 * Checks for the existence of Sage, and stops immediately if not found.
+	 *
+	 * @throws \WP_CLI\ExitException
+	 */
+	private function checkForSage()
+	{
+		if (!function_exists("App\\sage")) {
+			WP_CLI::error("You don't appear to have installed or activated Sage 9!");
+		}
+	}
 
     /**
      * Determines which directory to parse for Blade templates.
@@ -47,12 +58,13 @@ class BladeCommand extends WP_CLI_Command
      */
     private function compileFile($file_path)
     {
+	    $this->checkForSage();
         if (!file_exists($file_path)) :
             WP_CLI::warning(sprintf("I couldn't find `%s`!", $file_path));
             return;
         else :
             $compiler = App\sage('blade')->compiler();
-                    $compiler->compile($file_path);
+            $compiler->compile($file_path);
             unset($compiler);
             return;
         endif;
@@ -82,6 +94,7 @@ class BladeCommand extends WP_CLI_Command
      */
     public function compile($args, $assoc_args)
     {
+    	$this->checkForSage();
         $sush = WP_CLI::get_config('quiet');
         $finder = new Finder();
 
@@ -146,6 +159,7 @@ class BladeCommand extends WP_CLI_Command
      */
     public function clear($args, $assoc_args)
     {
+	    $this->checkForSage();
         $finder = new Finder();
         $blade = App\sage('blade');
         $filesystem = new Filesystem();
@@ -176,6 +190,7 @@ class BladeCommand extends WP_CLI_Command
      */
     public function wipe()
     {
+	    $this->checkForSage();
         $finder = new Finder();
         $filesystem = new Filesystem();
         $all_files = array_map(function ($file) {
