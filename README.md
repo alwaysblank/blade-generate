@@ -9,8 +9,9 @@ Quick links: [Using](#using) | [Installing](#installing) | [Contributing](#contr
 
 ## Using
 
-**DO NOT ATTEMPT TO USE THIS PLUGIN WITH ANY THEME NOT BASED ON [SAGE](https://github.com/roots/sage)**
-It will almost certainly fail.
+Before using this plugin, make sure you have installed and activated a theme built on [Sage 9](https://github.com/roots/sage). While in theory this plugin could be modified to work with other blade-based WordPress systems, it is currently *only* designed to work with Sage 9.
+
+**Note:** Sage 10 will make heavy use of the [Acorn project](https://github.com/roots/acorn), which looks to provide this functionality internally (take a look at the `ViewCacheCommand.php` and `ViewClearCommand.php` files [here](https://github.com/roots/acorn/tree/master/src/Acorn/Console/Commands)). Consequently, I do not currently intend to update this plugin to work with Sage 10, unless the Acorn functionality that it would replicate is removed or proves otherwise problematic.
 
 ### Compiling
 
